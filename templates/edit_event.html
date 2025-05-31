@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Event - Event Manager{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0">Edit Event</h4>
+            </div>
+            <div class="card-body">
+                <form method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Event Title</label>
+                        <input type="text" class="form-control" id="title" name="title" value="{{ event.title }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea class="form-control" id="description" name="description" rows="4" required>{{ event.description }}</textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="date" class="form-label">Date</label>
+                                <input type="date" class="form-control" id="date" name="date" value="{{ event.date }}" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="time" class="form-label">Time</label>
+                                <input type="time" class="form-control" id="time" name="time" value="{{ event.time }}" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="location" class="form-label">Location</label>
+                        <input type="text" class="form-control" id="location" name="location" value="{{ event.location }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="club_name" class="form-label">Club Name</label>
+                        <input type="text" class="form-control" id="club_name" name="club_name" value="{{ event.club_name }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="expected_attendees" class="form-label">Expected Attendees</label>
+                        <input type="number" class="form-control" id="expected_attendees" name="expected_attendees" value="{{ event.expected_attendees }}" min="1" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Event Image</label>
+                        {% if event.image_path %}
+                        <div class="mb-2">
+                            <img src="{{ url_for('static', filename=event.image_path) }}" alt="Current event image" class="img-thumbnail" style="max-height: 200px;">
+                        </div>
+                        {% endif %}
+                        <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                        <div class="form-text">Upload a new image to replace the current one (optional)</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update Event</button>
+                    <a href="{{ url_for('view_event', event_id=event.id) }}" class="btn btn-secondary">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
