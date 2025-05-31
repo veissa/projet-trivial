@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Événements - Campus Events Hub</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Campus Events Hub</div>
+        <div class="nav-links">
+            <a href="#" class="nav-link" id="createEventLink">Créer un événement</a>
+            <a href="#" class="nav-link" id="becomeOrganizerLink" style="display: none;">Devenir organisateur</a>
+            <a href="#" class="nav-link" id="logoutLink">Déconnexion</a>
+        </div>
+    </nav>
+
+    <main>
+        <section id="events" class="events-section">
+            <div class="filters">
+                <select id="categoryFilter">
+                    <option value="">Toutes les catégories</option>
+                    <option value="CIT">CIT</option>
+                    <option value="CAS">CAS</option>
+                    <option value="ENACTUS">ENACTUS</option>
+                    <option value="CESE">CESE</option>
+                    <option value="Sports">Comité Sports</option>
+                    <option value="Mosque">Comité Mosquée</option>
+                </select>
+                <input type="date" id="dateFilter">
+            </div>
+            <div id="eventsGrid" class="events-grid"></div>
+        </section>
+
+        <!-- Create Event Modal -->
+        <div id="createEventModal" class="modal">
+            <div class="modal-content">
+                <h2>Créer un nouvel événement</h2>
+                <form id="createEventForm">
+                    <div class="form-group">
+                        <label for="title">Titre de l'événement</label>
+                        <input type="text" id="title" name="title" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea id="description" name="description" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="time">Heure</label>
+                        <input type="time" id="time" name="time" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">Lieu</label>
+                        <select id="location" name="location" required>
+                            <option value="">Sélectionner un lieu</option>
+                            <optgroup label="Salles de classe">
+                                <option value="CC01">CC01</option>
+                                <option value="CC02">CC02</option>
+                                <option value="CC03">CC03</option>
+                                <option value="CC04">CC04</option>
+                                <option value="CC05">CC05</option>
+                                <option value="CC06">CC06</option>
+                            </optgroup>
+                            <optgroup label="Salles B">
+                                <option value="B100">B100</option>
+                                <option value="B101">B101</option>
+                                <option value="B102">B102</option>
+                                <option value="B200">B200</option>
+                                <option value="B201">B201</option>
+                                <option value="B202">B202</option>
+                            </optgroup>
+                            <optgroup label="Amphithéâtres">
+                                <option value="E1">Amphithéâtre E1</option>
+                                <option value="E2">Amphithéâtre E2</option>
+                                <option value="E3">Amphithéâtre E3</option>
+                                <option value="Zlafa">Grand Amphithéâtre (Zlafa)</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="expected_attendees">Nombre de participants attendus</label>
+                        <input type="number" id="expected_attendees" name="expected_attendees" min="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="club_name">Club organisateur</label>
+                        <select id="club_name" name="club_name" required>
+                            <option value="">Sélectionner le club organisateur</option>
+                            <option value="CIT">CIT</option>
+                            <option value="CAS">CAS</option>
+                            <option value="ENACTUS">ENACTUS</option>
+                            <option value="CESE">CESE</option>
+                            <option value="Sports">Comité Sports</option>
+                            <option value="Mosque">Comité Mosquée</option>
+                        </select>
+                    </div>
+
+                    <div class="modal-actions">
+                        <button type="submit" class="primary-btn">Créer l'événement</button>
+                        <button type="button" class="secondary-btn" onclick="hideModal(createEventModal)">Annuler</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Become Organizer Modal -->
+        <div id="becomeOrganizerModal" class="modal">
+            <div class="modal-content">
+                <h2>Devenir organisateur d'événements</h2>
+                <p>En tant qu'organisateur, vous pourrez créer et gérer vos propres événements tout en participant à d'autres événements.</p>
+                <form id="becomeOrganizerForm">
+                    <div class="modal-actions">
+                        <button type="submit" class="primary-btn">Confirmer</button>
+                        <button type="button" class="secondary-btn" onclick="hideModal(becomeOrganizerModal)">Annuler</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Participate Modal -->
+        <div id="participateModal" class="modal">
+            <div class="modal-content">
+                <h2>Participer à l'événement</h2>
+                <form id="participateForm">
+                    <input type="hidden" name="eventId">
+                    <p>Êtes-vous sûr de vouloir participer à cet événement ?</p>
+                    <div class="modal-actions">
+                        <button type="submit" class="primary-btn">Confirmer</button>
+                        <button type="button" class="secondary-btn" onclick="hideModal(participateModal)">Annuler</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="events.js"></script>
+</body>
+</html> 

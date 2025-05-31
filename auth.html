@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentification</title>
+    <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+    <div class="auth-container">
+        <h1 class="welcome-title">Welcome to Campus Event</h1>
+        <div id="loginSection">
+            <h2>Connexion</h2>
+            <form id="loginForm">
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="password" id="password" placeholder="Mot de passe" required>
+                <button type="submit">Se connecter</button>
+            </form>
+            <p>Pas de compte ? <a href="#" id="showRegister">Inscrivez-vous</a></p>
+        </div>
+        <div id="registerSection" style="display:none;">
+            <h2>Inscription</h2>
+            <form id="registerForm">
+                <input type="text" id="nom" placeholder="Nom" required>
+                <input type="text" id="prenom" placeholder="Prénom" required>
+                <select id="niveau" required>
+                    <option value="">Sélectionnez votre niveau</option>
+                    <option value="INE1">INE1</option>
+                    <option value="INE2">INE2</option>
+                    <option value="INE3">INE3</option>
+                    <option value="laureat">Lauréat</option>
+                </select>
+                <select id="filiere" required>
+                    <option value="">Sélectionnez votre filière</option>
+                    <option value="SESNUM">SESNUM</option>
+                    <option value="ASEDS">ASEDS</option>
+                    <option value="SMART">SMART</option>
+                    <option value="ICT">ICT</option>
+                    <option value="ICCN">ICCN</option>
+                    <option value="DATA">DATA</option>
+                    <option value="AMOA">AMOA</option>
+                    <option value="CLOUD">CLOUD</option>
+                </select>
+                <input type="email" id="registerEmail" placeholder="Email" required>
+                <input type="password" id="registerPassword" placeholder="Mot de passe" required>
+                <button type="submit">S'inscrire</button>
+            </form>
+            <p>Déjà un compte ? <a href="#" id="showLogin">Se connecter</a></p>
+        </div>
+    </div>
+    <script src="auth.js"></script>
+</body>
+</html> 
